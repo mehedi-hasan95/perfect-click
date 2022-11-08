@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
+    const { loginUserWithEmail } = useContext(AuthContext);
 
     const handleLogin = e => {
+        
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -11,8 +14,21 @@ const Login = () => {
         form.reset();
 
         // Login User
+        loginUserWithEmail(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+          });
         
     }
+
+
+    
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 py-10'>
             <div>
