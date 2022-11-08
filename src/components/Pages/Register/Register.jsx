@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
+    const {createUser, updateName} = useContext(AuthContext);
 
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
+        const photoURL = form.photo.value;
         const password = form.password.value;
         form.reset();
+
+        // Create user with email
+
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            handleNameAndUrl(name, photoURL);
+            console.log(user);
+        })
+        .catch(err => console.error(err));
+    }
+
+    // Handle update name and PhotoUrl
+    const handleNameAndUrl = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateName(profile)
+        .then(() => {})
+        .catch((error) => {});
     }
 
     return (
@@ -36,7 +60,7 @@ const Register = () => {
                         <label className="block text-dark-02">Your Password</label>
                         <input type="password" name="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border border-dark-02 text-black focus:border-violet-400" />
                     </div>
-                    <button className="block w-full p-3 text-center rounded-lg bg-custom-orange text-xl font-semibold text-white">Sign Up</button>
+                    <button className="block w-full p-3 text-center rounded-lg bg-purple-400 text-xl font-semibold text-white">Sign Up</button>
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>

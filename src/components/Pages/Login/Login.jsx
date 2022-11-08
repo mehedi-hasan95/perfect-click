@@ -32,7 +32,7 @@ const Login = () => {
                             <Link rel="noopener noreferrer" href="#">Forgot Password?</Link>
                         </div>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-lg bg-custom-orange text-xl font-semibold text-white">Sign in</button>
+                    <button className="block w-full p-3 text-center rounded-lg bg-purple-400 text-xl font-semibold text-white">Sign in</button>
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
