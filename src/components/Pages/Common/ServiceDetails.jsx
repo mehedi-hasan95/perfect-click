@@ -7,9 +7,17 @@ import { toast } from 'react-toastify';
 import SingleReview from './SingleReview';
 
 const ServiceDetails = () => {
-    const [review, setReview] = useState([]);
     const { _id, title, img, price, description } = useLoaderData();
     const { user } = useContext(AuthContext);
+    //Practice
+    const [singleReviews, setSingleReviews] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/sns?service=${_id}`)
+            .then(res => res.json())
+            .then(data => setSingleReviews(data))
+    }, [_id])
+
+    console.log(singleReviews);
 
 
     // Post Review 
@@ -45,12 +53,8 @@ const ServiceDetails = () => {
             });
     }
 
-    // Display a service comments 
-    useEffect(() => {
-        fetch(`http://localhost:5000/reviews?_id=${user?._id}`)
-            .then(res => res.json())
-            .then(data => setReview(data))
-    }, [user?.email])
+
+
 
 
 
@@ -80,33 +84,36 @@ const ServiceDetails = () => {
                 </div>
             </div>
             <div className='mt-8 md:mt-10 lg:mt-15 border shadow p-5 rounded-lg'>
-                <div className='mb-8'>
-                    <h2 className='text-xl text-violet-400 font-bold mb-7'>
+                <div className='py-10'>
+                    <h2 className='text-2xl mb-5'>
                         {
-                            review.length < 1 ?
-                                <>You have no review</>
+                            singleReviews.length < 1 ?
+                                <>This item have no review.</>
                                 :
-                                <>You have total {review.length} reviews</>
+                                <>This item have <span className='font-bold'>{singleReviews.length}</span> reviews</>
                         }
                     </h2>
-                    <div className='grid grid-cols-1 gap-5'>
+
+                    <div className='grid gap-5'>
                         {
-                            review.map(rev => <SingleReview key={rev._id} rev={rev}></SingleReview>)
+                            singleReviews.map(rev => <SingleReview key={rev._id} rev={rev}></SingleReview>)
                         }
                     </div>
                 </div>
-                {
-                    user?.uid ?
-                        <form onSubmit={handlePost}>
-                            <label className="block">
-                                <span className="mb-1 text-lg">Write Your Review</span>
-                                <textarea rows="3" name='message' className="block w-full rounded-md outline-none border border-violet-600 p-5"></textarea>
-                            </label>
-                            <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Post" />
-                        </form>
-                        :
-                        <h2>Please Login to write a review</h2>
-                }
+                <div className='mt-10 md:mt-15 lg:mt-20'>
+                    {
+                        user?.uid ?
+                            <form onSubmit={handlePost}>
+                                <label className="block">
+                                    <span className="mb-1 text-2xl font-semibold ">Write Your Review</span>
+                                    <textarea rows="3" name='message' className="block w-full rounded-md outline-none border border-violet-600 p-5"></textarea>
+                                </label>
+                                <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Post" />
+                            </form>
+                            :
+                            <h2>Please Login to write a review</h2>
+                    }
+                </div>
             </div>
         </div>
     );
