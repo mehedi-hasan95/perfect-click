@@ -85,7 +85,7 @@ const Register = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6 dark:text-gray-400">Already have an account? 
-                    <Link rel="noopener noreferrer" to='/register' className="underline text-lg font-semibold text-custom-orange"> Login</Link>
+                    <Link rel="noopener noreferrer" to='/login' className="underline text-lg font-semibold text-custom-orange"> Login</Link>
                 </p>
             </div>
         </div>
