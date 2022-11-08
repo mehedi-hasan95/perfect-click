@@ -17,9 +17,10 @@ const ServiceDetails = () => {
 
         const userReviews = {
             service: _id,
-            name: user.displayName,
-            email: user.email,
-            photo: user.photoURL,
+            name: user?.displayName,
+            email: user?.email,
+            photo: user?.photoURL,
+            message,
         }
 
         fetch('http://localhost:5000/reviews', {
