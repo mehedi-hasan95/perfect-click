@@ -10,7 +10,7 @@ const SingleService = ({ serv }) => {
                 <div className="space-y-2">
                     <h2 className="text-3xl font-semibold tracking-wide text-black">{title}</h2>
                     <p className="text-black">{description.length < 100 ? description : description.slice(0, 100) + '...'}</p>
-                    <h3>{price}</h3>
+                    <h3 className='py-5'><span className='font-semibold text-purple-700'>Price:</span> ${price} per hour</h3>
                 </div>
                 <Link to={`/services/${_id}`} className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900">Details</Link>
             </div>

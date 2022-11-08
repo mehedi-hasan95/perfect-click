@@ -27,6 +27,9 @@ const Menu = () => {
             <Link to='/' className='text-gray-800 hover:text-gray-400 duration-500'>Home</Link>
           </li>
           <li className='md:ml-8 text-xl md:my-0 my-7'>
+            <Link to='/services' className='text-gray-800 hover:text-gray-400 duration-500'>Services</Link>
+          </li>
+          <li className='md:ml-8 text-xl md:my-0 my-7'>
             <Link to='/blog' className='text-gray-800 hover:text-gray-400 duration-500'>Blog</Link>
           </li>
           {
