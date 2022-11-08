@@ -21,7 +21,7 @@ const Menu = () => {
         </div>
 
         <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto -z-1 left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'left-[200%]'}`}>
-          
+
 
           <li className='md:ml-8 text-xl md:my-0 my-7'>
             <Link to='/' className='text-gray-800 hover:text-gray-400 duration-500'>Home</Link>
@@ -29,18 +29,23 @@ const Menu = () => {
           <li className='md:ml-8 text-xl md:my-0 my-7'>
             <Link to='/blog' className='text-gray-800 hover:text-gray-400 duration-500'>Blog</Link>
           </li>
-          <li className='md:ml-8 text-xl md:my-0 my-7'>
-            <Link to='/my-reviews' className='text-gray-800 hover:text-gray-400 duration-500'>My Reviews</Link>
-          </li>
-          <li className='md:ml-8 text-xl md:my-0 my-7'>
-            <Link to='/add-service' className='text-gray-800 hover:text-gray-400 duration-500'>Add service</Link>
-          </li>
+          {
+            user?.uid &&
+              <>
+                <li className='md:ml-8 text-xl md:my-0 my-7'>
+                  <Link to='/my-reviews' className='text-gray-800 hover:text-gray-400 duration-500'>My Reviews</Link>
+                </li>
+                <li className='md:ml-8 text-xl md:my-0 my-7'>
+                  <Link to='/add-service' className='text-gray-800 hover:text-gray-400 duration-500'>Add service</Link>
+                </li>
+              </>
+          }
           <li className='md:ml-8 text-xl md:my-0 my-7'>
             {
               user?.uid ?
-              <Link onClick={logOut} className='text-gray-800 hover:text-gray-400 duration-500'>Log Out</Link>
-              :
-              <Link to='/login' className='text-gray-800 hover:text-gray-400 duration-500'>Login</Link>
+                <Link onClick={logOut} className='text-gray-800 hover:text-gray-400 duration-500'>Log Out</Link>
+                :
+                <Link to='/login' className='text-gray-800 hover:text-gray-400 duration-500'>Login</Link>
             }
           </li>
         </ul>
