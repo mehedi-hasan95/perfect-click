@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';
+import SingleReview from './SingleReview';
 
 const ServiceDetails = () => {
+    const [review, setReview] = useState([]);
     const { _id, title, img, price, description } = useLoaderData();
+    const { user } = useContext(AuthContext);
 
 
     // Post Review 
@@ -32,8 +35,8 @@ const ServiceDetails = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                if(data.acknowledged) {
-                    toast.success("You have sucessfully post your review", {autoClose: 500})
+                if (data.acknowledged) {
+                    toast.success("You have sucessfully post your review", { autoClose: 500 })
                     e.target.reset();
                 }
             })
@@ -42,8 +45,14 @@ const ServiceDetails = () => {
             });
     }
 
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    // Display a service comments 
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews?_id=${user?._id}`)
+            .then(res => res.json())
+            .then(data => setReview(data))
+    }, [user?.email])
+
+
 
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 px-5'>
@@ -70,8 +79,22 @@ const ServiceDetails = () => {
                     <h4 className='text-lg font-bold'><span className='text-purple-700 font-bold'>Hire Me:</span> ${price} per hour</h4>
                 </div>
             </div>
-            <div className='mt-8 md:mt-10 lg:mt-15'>
-                <div className='mb-8'>No review</div>
+            <div className='mt-8 md:mt-10 lg:mt-15 border shadow p-5 rounded-lg'>
+                <div className='mb-8'>
+                    <h2 className='text-xl text-violet-400 font-bold mb-7'>
+                        {
+                            review.length < 1 ?
+                                <>You have no review</>
+                                :
+                                <>You have total {review.length} reviews</>
+                        }
+                    </h2>
+                    <div className='grid grid-cols-1 gap-5'>
+                        {
+                            review.map(rev => <SingleReview key={rev._id} rev={rev}></SingleReview>)
+                        }
+                    </div>
+                </div>
                 {
                     user?.uid ?
                         <form onSubmit={handlePost}>
