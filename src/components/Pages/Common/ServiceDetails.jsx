@@ -1,15 +1,52 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { AuthContext } from '../../Context/AuthProvider';
+import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
-    const { title, img, price, description } = useLoaderData();
-    return (
-        <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <div>
-                {/* <img src={img} alt={title} /> */}
+    const { _id, title, img, price, description } = useLoaderData();
 
+
+    // Post Review 
+    const handlePost = e => {
+        e.preventDefault();
+        const message = e.target.message.value;
+
+
+        const userReviews = {
+            service: _id,
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+        }
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userReviews),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.acknowledged) {
+                    toast.success("You have sucessfully post your review", {autoClose: 500})
+                    e.target.reset();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    const { user } = useContext(AuthContext);
+    console.log(user);
+
+    return (
+        <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 px-5'>
+            <div>
                 <PhotoProvider>
                     <PhotoView src={img}>
                         <img className=' cursor-pointer' src={img} alt="" />
@@ -32,7 +69,21 @@ const ServiceDetails = () => {
                     <h4 className='text-lg font-bold'><span className='text-purple-700 font-bold'>Hire Me:</span> ${price} per hour</h4>
                 </div>
             </div>
-            <div>Mehedi</div>
+            <div className='mt-8 md:mt-10 lg:mt-15'>
+                <div className='mb-8'>No review</div>
+                {
+                    user?.uid ?
+                        <form onSubmit={handlePost}>
+                            <label className="block">
+                                <span className="mb-1 text-lg">Write Your Review</span>
+                                <textarea rows="3" name='message' className="block w-full rounded-md outline-none border border-violet-600 p-5"></textarea>
+                            </label>
+                            <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Post" />
+                        </form>
+                        :
+                        <h2>Please Login to write a review</h2>
+                }
+            </div>
         </div>
     );
 };
