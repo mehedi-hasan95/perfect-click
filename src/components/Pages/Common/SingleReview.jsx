@@ -17,6 +17,8 @@ const SingleReview = ({rev}) => {
                 </div>
             </div>
             <div className="p-4 space-y-2 text-sm text-white">{message}</div>
+            <button className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer mr-5'>Edit</button>
+            <button className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer'>Delete</button>
         </div>
     );
 };
