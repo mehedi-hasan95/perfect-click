@@ -40,13 +40,11 @@ const Login = () => {
                     .then((data) => {
                         console.log('Success:', data);
                         localStorage.setItem('perfectClick', data.token);
+                        navigate(from, { replace: true });
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                     });
-
-
-                // navigate(from, { replace: true });
             })
             .catch((error) => {
                 const errorMessage = error.message;
