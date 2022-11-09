@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SingleService from '../Common/SingleService';
 
 const Home = () => {
     const [service, setService] = useState([]);
-    useEffect( () => {
-        fetch(`http://localhost:5000/services`)
-        .then(res => res.json())
-        .then(data => setService(data))
-    },[])
+    useEffect(() => {
+        fetch(`http://localhost:5000/limit`)
+            .then(res => res.json())
+            .then(data => setService(data))
+    }, [])
     return (
         <div className='container mx-auto'>
             <div>
@@ -21,6 +22,9 @@ const Home = () => {
                 {
                     service.map(serv => <SingleService key={serv._id} serv={serv}></SingleService>)
                 }
+            </div>
+            <div className='text-center mt-10'>
+                <Link to='/services' className='text-xl font-semibold bg-violet-400 px-4 py-2 rounded-lg inline-block'>See All</Link>
             </div>
             <div className='py-10'>
                 <h2 className='text-2xl text-center mb-5'>Our Galery</h2>
