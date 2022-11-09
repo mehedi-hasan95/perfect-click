@@ -36,11 +36,12 @@ const UpdateReview = () => {
     }
     return (
         <div className='container mx-auto'>
+            <h2 className='text-center text-2xl font-bold py-10'>Please Update your Review</h2>
             <form onSubmit={handleSubmit}>
                 <label className="block">
                     <textarea onBlur={clickUpdate} defaultValue={review.message} rows="3" name='message' className="block w-full rounded-md outline-none border border-violet-600 p-5"></textarea>
                 </label>
-                <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Post" />
+                <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Update Review" />
             </form>
         </div>
     );
