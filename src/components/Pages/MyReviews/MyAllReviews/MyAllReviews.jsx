@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import './SingleReview.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyAllReviews = ({rev, handleDelete}) => {
     const { _id, name, photo, email, message} = rev;
     
-    // Modal section 
-    const [modal, setModal] = useState(false);
-    const togleModal = () => {
-        setModal(!modal)
-    }
+    
 
     
     return (
@@ -25,18 +21,9 @@ const MyAllReviews = ({rev, handleDelete}) => {
                 </div>
             </div>
             <div className="p-4 space-y-2 text-sm text-white">{message}</div>
-            <button onClick={togleModal} className='btn-modal bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer mr-5'>Edit</button>
+            <Link to={`/reviews/${_id}`} className='btn-modal bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer mr-5'>Edit</Link>
             <button onClick={()=>handleDelete(_id)} className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer'>Delete</button>
-            {
-                modal && <div className="modal">
-                <div className="overlay"></div>
-                <div className="modal-content">
-                    <h2 className='text-xl'>Please edit your review</h2>
-                    <p className='mt-5'>{message}</p>
-                    <button onClick={togleModal} className='close-modal rounded-lg'>Edit</button>
-                </div>
-            </div>
-            }
+            
         </div>
     );
 };

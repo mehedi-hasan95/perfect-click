@@ -36,7 +36,7 @@ const Menu = () => {
             user?.uid &&
               <>
                 <li className='md:ml-8 text-xl md:my-0 my-7'>
-                  <Link to='/my-reviews' className='text-gray-800 hover:text-gray-400 duration-500'>My Reviews</Link>
+                  <Link to='/reviews' className='text-gray-800 hover:text-gray-400 duration-500'>My Reviews</Link>
                 </li>
                 <li className='md:ml-8 text-xl md:my-0 my-7'>
                   <Link to='/add-service' className='text-gray-800 hover:text-gray-400 duration-500'>Add service</Link>
