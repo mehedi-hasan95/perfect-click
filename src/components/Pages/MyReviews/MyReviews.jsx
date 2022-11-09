@@ -22,7 +22,7 @@ const MyReviews = () => {
             .then (res => res.json())
             .then (data => {
                 if( data.deletedCount > 0 ) {
-                    toast.success("You have sucessfully delete the review", {autoClose: 600});
+                    toast.success("You have Successfully delete the review", {autoClose: 600});
                     const remaining = review.filter(rvw => rvw._id !== id);
                     setReview(remaining)
                 }

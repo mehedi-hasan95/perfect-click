@@ -20,7 +20,7 @@ const UpdateReview = () => {
             .then((data) => {
                 console.log('Success:', data);
                 if(data.acknowledged) {
-                    toast.success("You have sucessfully update your review", {autoClose: 500});
+                    toast.success("You have successfully update your review", {autoClose: 500});
                 }
             })
 
