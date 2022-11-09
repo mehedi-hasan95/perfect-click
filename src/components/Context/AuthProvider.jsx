@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import app from '../Firebase/Firebase.init';
@@ -36,6 +36,11 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // Login with Google
+    const googleLogin = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
+
     // After user Change
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -52,7 +57,7 @@ const AuthProvider = ({ children }) => {
 
 
     const authInfo = {
-        createUser, loginUserWithEmail, updateName, logOut, user, loading
+        createUser, loginUserWithEmail, updateName, logOut, user, loading, googleLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>
