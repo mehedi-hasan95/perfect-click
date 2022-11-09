@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
         {path: 'register', element: <Register></Register>},
         {path: 'services', element: <Services></Services>},
         {path: 'services/:id', element: <ServiceDetails></ServiceDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({params}) => fetch(`https://service-review-server-seven.vercel.app/services/${params.id}`)
         },
         {path: 'reviews', element: <PrivetRoute><MyReviews></MyReviews></PrivetRoute>},
         {path: 'reviews/:id', element: <UpdateReview></UpdateReview>,
-        loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({params}) => fetch(`https://service-review-server-seven.vercel.app/reviews/${params.id}`)
         },
         {path: 'add-service', element: <PrivetRoute><AddService></AddService></PrivetRoute>}
     ]

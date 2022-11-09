@@ -9,7 +9,7 @@ const Home = () => {
 
     
     useEffect(() => {
-        fetch(`http://localhost:5000/limit`)
+        fetch(`https://service-review-server-seven.vercel.app/limit`)
             .then(res => res.json())
             .then(data => setService(data))
     }, [])

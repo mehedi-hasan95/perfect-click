@@ -12,7 +12,7 @@ const AddService = () => {
 
         e.preventDefault();
         // Update User
-        fetch('http://localhost:5000/services', {
+        fetch('https://service-review-server-seven.vercel.app/services', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

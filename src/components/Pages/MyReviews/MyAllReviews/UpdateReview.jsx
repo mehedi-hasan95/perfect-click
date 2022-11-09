@@ -13,7 +13,7 @@ const UpdateReview = () => {
 
         e.preventDefault();
         // Update User
-        fetch(`http://localhost:5000/reviews/${review._id}`, {
+        fetch(`https://service-review-server-seven.vercel.app/reviews/${review._id}`, {
             method: 'PUT', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

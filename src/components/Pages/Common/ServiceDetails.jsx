@@ -12,7 +12,7 @@ const ServiceDetails = () => {
     //Practice
     const [singleReviews, setSingleReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/sns?service=${_id}`)
+        fetch(`https://service-review-server-seven.vercel.app/sns?service=${_id}`)
             .then(res => res.json())
             .then(data => setSingleReviews(data))
     }, [_id])
@@ -34,7 +34,7 @@ const ServiceDetails = () => {
             message,
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://service-review-server-seven.vercel.app/reviews', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

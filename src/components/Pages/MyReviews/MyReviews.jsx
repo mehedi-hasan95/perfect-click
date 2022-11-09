@@ -12,7 +12,7 @@ const MyReviews = () => {
     useTitle('Reviews - Perfect Click');
 
     useEffect( () => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://service-review-server-seven.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearar ${localStorage.getItem('perfectClick')}`
             }
@@ -30,7 +30,7 @@ const MyReviews = () => {
     const handleDelete = id => {
         const proced = window.confirm("Do you want to delete this review?");
         if(proced) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://service-review-server-seven.vercel.app/reviews/${id}`, {
                 method: "DELETE"
             })
             .then (res => res.json())
