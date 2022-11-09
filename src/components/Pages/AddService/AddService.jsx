@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
     const [user, setUser] = useState([]);
@@ -15,7 +16,10 @@ const AddService = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success:', data);
+                if(data.acknowledged) {
+                    toast.success("Successfully add the service", {autoClose: 500});
+                    e.target.reset();
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);

@@ -8,6 +8,7 @@ import MyReviews from "../Pages/MyReviews/MyReviews";
 import Register from "../Pages/Register/Register";
 import Services from "../Pages/Services/Services";
 import Main from "./Main";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
     {path: '/', element: <Main></Main>,
@@ -19,11 +20,11 @@ export const router = createBrowserRouter([
         {path: 'services/:id', element: <ServiceDetails></ServiceDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
         },
-        {path: 'reviews', element: <MyReviews></MyReviews>},
+        {path: 'reviews', element: <PrivetRoute><MyReviews></MyReviews></PrivetRoute>},
         {path: 'reviews/:id', element: <UpdateReview></UpdateReview>,
         loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
         },
-        {path: 'add-service', element: <AddService></AddService>}
+        {path: 'add-service', element: <PrivetRoute><AddService></AddService></PrivetRoute>}
     ]
 }
 ])
