@@ -1,7 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
@@ -30,7 +29,7 @@ const Login = () => {
 
                 // jwt 
                 fetch('http://localhost:5000/jwt', {
-                    method: 'POST', 
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -60,8 +59,29 @@ const Login = () => {
         googleLogin(provider)
             .then(result => {
                 const user = result.user;
-                toast.success("Thank you for login", { autoClose: 500 });
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email,
+                }
+
+                console.log(currentUser);
+
+                // jwt 
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                        localStorage.setItem('perfectClick', data.token);
+                        navigate(from, { replace: true });
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
             })
             .catch((error) => {
                 const errorMessage = error.message;
