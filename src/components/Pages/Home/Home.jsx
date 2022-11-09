@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/hooks';
 import SingleService from '../Common/SingleService';
 
 const Home = () => {
     const [service, setService] = useState([]);
+    useTitle("Home - Perfect Click");
+
+    
     useEffect(() => {
         fetch(`http://localhost:5000/limit`)
             .then(res => res.json())

@@ -2,12 +2,15 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../hooks/hooks';
 
 const Login = () => {
     const { loginUserWithEmail, loading, googleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    useTitle('Login - Perfect Click');
 
     const handleLogin = e => {
 

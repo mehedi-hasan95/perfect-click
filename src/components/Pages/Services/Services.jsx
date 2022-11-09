@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../hooks/hooks';
 import SingleService from '../Common/SingleService';
 
 const Services = () => {
     const { loading} = useContext(AuthContext);
     const [service, setService] = useState([]);
+
+
+    useTitle('Services - Perfect Click');
+
     useEffect( () => {
         fetch(`http://localhost:5000/services`)
         .then(res => res.json())

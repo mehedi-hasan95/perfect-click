@@ -3,12 +3,15 @@ import React, { useContext } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../hooks/hooks';
 
 const Register = () => {
     const {createUser, updateName, loading, googleLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    useTitle('Register - Perfect Click');
 
     const handleRegister = e => {
         e.preventDefault();

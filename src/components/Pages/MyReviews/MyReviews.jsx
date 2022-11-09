@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
+import useTitle from '../../hooks/hooks';
 import MyAllReviews from './MyAllReviews/MyAllReviews';
 
 const MyReviews = () => {
     const {user, logOut} = useContext(AuthContext);
     const [review, setReview] = useState([]);
+
+
+    useTitle('Reviews - Perfect Click');
+
     useEffect( () => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
             headers: {

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import useTitle from '../../hooks/hooks';
 
 const AddService = () => {
     const [user, setUser] = useState([]);
+
+
+    useTitle('Add Services - Perfect Click');
+
     const handleSubmit = e => {
 
         e.preventDefault();

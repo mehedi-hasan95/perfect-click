@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useTitle from '../../../hooks/hooks';
 
 const UpdateReview = () => {
     const review = useLoaderData();
     const [user, setUser] = useState(review);
+
+    useTitle("Update Reviews - Perfect Click");
+
     const handleSubmit = e => {
 
         e.preventDefault();
