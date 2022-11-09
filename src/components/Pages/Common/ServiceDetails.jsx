@@ -4,7 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';
-import SingleReview from './SingleReview';
+import SingleReview from './SingleReview/SingleReview';
 
 const ServiceDetails = () => {
     const { _id, title, img, price, description } = useLoaderData();

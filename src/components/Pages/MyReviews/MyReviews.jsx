@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
-import SingleReview from '../Common/SingleReview';
+import SingleReview from '../Common/SingleReview/SingleReview';
 
 const MyReviews = () => {
     const {user} = useContext(AuthContext);
