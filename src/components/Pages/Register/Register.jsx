@@ -77,7 +77,7 @@ const Register = () => {
                     </div>
                     <div className="space-y-1 text-sm">
                         <label className="block text-dark-02">Your Photo</label>
-                        <input type="text" name="photo" placeholder="Your Email" className="w-full px-4 py-3 rounded-md border border-dark-02 text-black focusborder-violet-400" />
+                        <input type="text" name="photo" placeholder="https://" className="w-full px-4 py-3 rounded-md border border-dark-02 text-black focusborder-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label className="block text-dark-02">Your Password</label>
