@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddService from "../Pages/AddService/AddService";
 import Blog from "../Pages/Blog/Blog";
 import ServiceDetails from "../Pages/Common/ServiceDetails";
+import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import UpdateReview from "../Pages/MyReviews/MyAllReviews/UpdateReview";
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
         },
         {path: 'add-service', element: <PrivetRoute><AddService></AddService></PrivetRoute>},
         {path: 'blog', element: <Blog></Blog>},
+        {path: '*', element: <Error></Error>}
         
     ]
 }
