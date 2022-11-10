@@ -1,15 +1,12 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 import useTitle from '../../hooks/hooks';
 
 const Register = () => {
-    const {createUser, updateName, loading, googleLogin } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+    const {createUser, updateName, googleLogin } = useContext(AuthContext);
 
     useTitle('Register - Perfect Click');
 
@@ -28,7 +25,7 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             handleNameAndUrl(name, photoURL);
-            console.log(user);
+            toast.success("Thank you for registration", {autoClose: 500});
         })
         .catch(err => console.error(err));
     }
@@ -51,8 +48,7 @@ const Register = () => {
         googleLogin(provider)
             .then(result => {
                 const user = result.user;
-                toast.success("Thank you for login", { autoClose: 500 });
-                Navigate(from, { replace: true });
+                toast.success("Thank you for Register", { autoClose: 500 });
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -61,19 +57,7 @@ const Register = () => {
 
     
 
-    // Loading spinner
-    if (loading) {
-        return <>
-            <div className="container mx-auto flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-                <div className="h-48 rounded-t bg-gray-700"></div>
-                <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-900">
-                    <div className="w-full h-6 rounded bg-gray-700"></div>
-                    <div className="w-full h-6 rounded bg-gray-700"></div>
-                    <div className="w-3/4 h-6 rounded bg-gray-700"></div>
-                </div>
-            </div>
-        </>
-    }
+    
 
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 py-10'>
