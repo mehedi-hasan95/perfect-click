@@ -111,7 +111,7 @@ const ServiceDetails = () => {
                                 <input className='bg-purple-400 inline-block px-4 py-2 rounded-lg mt-5 font-semibold cursor-pointer' type="submit" value="Post" />
                             </form>
                             :
-                            <h2>Please Login to write a review</h2>
+                            <h2 className='text-2xl text-red-600'>Please Login to write a review</h2>
                     }
                 </div>
             </div>
