@@ -2,9 +2,16 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'custom-font': ['Dancing Script'],
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tw-elements/dist/plugin')
+  ],
 }

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useTitle from '../../hooks/hooks';
 import SingleService from '../Common/SingleService';
+import Slider from './Slider/Slider';
 
 const Home = () => {
     const [service, setService] = useState([]);
     useTitle("Home - Perfect Click");
 
-    
+
     useEffect(() => {
         fetch(`https://service-review-server-seven.vercel.app/limit`)
             .then(res => res.json())
@@ -16,7 +17,7 @@ const Home = () => {
     return (
         <div className='container mx-auto'>
             <div>
-                <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt="" />
+                <Slider></Slider>
             </div>
             <div className='text-center py-10'>
                 <h2 className='text-3xl text-black font-bold mb-10'>We're Gleam a small and enthusiastic <br /> photography studio based in Bangladesh</h2>
