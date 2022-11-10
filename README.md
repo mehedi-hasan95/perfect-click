@@ -34,4 +34,4 @@ If you go to the user service page, you can see all the services in the database
 When a user login he will see 2 additional menu items named “My Reviews” “Add service”. A logged in user can view all his reviews by going to “My Reviews”. He can edit or delete if necessary. Moreover, you can add new service by going to "Add service". These services will be added to the database. These data can be seen again on the homepage. Moreover, it can be seen on the service page.
 
 ### `Website Live Link`
-<a href="https://service-review-5933c.web.app/">ervice-review-5933c.web.app</a>
+<a href="https://service-review-5933c.web.app/">service-review-5933c.web.app</a>
